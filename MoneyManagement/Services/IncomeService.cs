@@ -13,7 +13,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                IQueryable<Income> incomes = context.Income;
+                IQueryable<Income> incomes = context.Incomes;
 
                 if (context.Users.Where(a => a.Id == filter.UserOrAdminId).Any()) // if there is a user with this id
                     incomes = incomes.Where(a => a.Id == filter.UserOrAdminId); // filter all the incomes with a given id
@@ -35,7 +35,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                IncomeForm incomes = context.Income.Select(a => new IncomeForm
+                IncomeForm incomes = context.Incomes.Select(a => new IncomeForm
                 {
                     IncomeSum = a.IncomeSum,
                     IncomeTypeName = a.IncomeType.Name,
@@ -65,14 +65,16 @@ namespace MoneyManagement.Services
 
                 if (income.Id != Guid.Empty)
                 {
-                    context.Income.Attach(income);
+                    context.Incomes.Attach(income);
                     context.Entry(income).Property(a => a.Name).IsModified = true;
                     context.Entry(income).Property(a => a.IncomeTypeId).IsModified = true;
                     context.Entry(income).Property(a => a.Month).IsModified = true;
                     context.Entry(income).Property(a => a.IncomeSum).IsModified = true;
                 }
                 else
-                    context.Income.Add(income);
+                {
+                    context.Incomes.Add(income);
+                }
                 context.SaveChanges();
                 return true;
             }
@@ -82,7 +84,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                context.Income.Remove(context.Income.Where(a => a.Id == id).FirstOrDefault());
+                context.Incomes.Remove(context.Incomes.Where(a => a.Id == id).FirstOrDefault());
                 return true;
             }
         }

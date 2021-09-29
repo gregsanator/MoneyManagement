@@ -14,10 +14,10 @@ namespace MoneyManagement.Models
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Income> Income { get; set; }
-        public DbSet<IncomeType> IncomeType { get; set; }
-        public DbSet<Expense> Expense { get; set; }
-        public DbSet<ExpenseType> ExpenseType { get; set; }
+        public DbSet<Income> Incomes { get; set; }
+        public DbSet<IncomeType> IncomeTypes { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
+        public DbSet<ExpenseType> ExpenseTypes { get; set; }
         public DbSet<UserAccount> UserAccount { get; set; }
     }
 }

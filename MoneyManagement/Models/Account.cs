@@ -11,6 +11,7 @@ namespace MoneyManagement.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // PK
         public Guid Id { get; set; }
 
+
         [ForeignKey("Income")]
         public Guid IncomeId { get; set; }
         public Income Income { get; set; }

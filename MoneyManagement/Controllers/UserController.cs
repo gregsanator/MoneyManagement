@@ -36,5 +36,14 @@ namespace MoneyManagement.Controllers
             bool success = service.Save(model);
             return Ok(success);
         }
+
+        [HttpPost]
+        [Route("api/moneymanagement/user/balance")]
+        public IHttpActionResult Balance(UserBalanceFilter filter)
+        {
+            UserService service = new UserService();
+            double balance = service.Balance(filter);
+            return Ok(balance);
+        }
     }
 }

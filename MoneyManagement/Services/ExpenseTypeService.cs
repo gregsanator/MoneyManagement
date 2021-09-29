@@ -13,7 +13,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                List<ExpenseTypeListItem> ExpenseTypeList = context.ExpenseType.Where(a => a.UserId == id).Select(a => new ExpenseTypeListItem
+                List<ExpenseTypeListItem> ExpenseTypeList = context.ExpenseTypes.Where(a => a.UserId == id).Select(a => new ExpenseTypeListItem
                 {
                     Id = a.Id,
                     Name = a.Name
@@ -26,7 +26,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                ExpenseTypeForm ExpenseType = context.ExpenseType.Where(a => a.Id == id).Select(a => new ExpenseTypeForm
+                ExpenseTypeForm ExpenseType = context.ExpenseTypes.Where(a => a.Id == id).Select(a => new ExpenseTypeForm
                 {
                     Name = a.Name,
                     DateCreated = a.DateCreated
@@ -49,11 +49,11 @@ namespace MoneyManagement.Services
 
                 if (ExpenseType.Id != Guid.Empty)
                 {
-                    context.ExpenseType.Attach(ExpenseType);
+                    context.ExpenseTypes.Attach(ExpenseType);
                     context.Entry(ExpenseType).Property(a => a.Name).IsModified = true;
                 }
                 else
-                    context.ExpenseType.Add(ExpenseType);
+                    context.ExpenseTypes.Add(ExpenseType);
                 context.SaveChanges();
                 return true;
             }
@@ -63,7 +63,7 @@ namespace MoneyManagement.Services
         {
             using(var context = new MoneyManagementDbContext())
             {
-                context.ExpenseType.Remove(context.ExpenseType.Where(a => a.Id == id).FirstOrDefault());
+                context.ExpenseTypes.Remove(context.ExpenseTypes.Where(a => a.Id == id).FirstOrDefault());
                 context.SaveChanges();
                 return true;
             }

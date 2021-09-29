@@ -13,7 +13,7 @@ namespace MoneyManagement
         {
             using(var context = new MoneyManagementDbContext())
             {
-                IQueryable<Expense> expenses = context.Expense;
+                IQueryable<Expense> expenses = context.Expenses;
 
                 if (context.Users.Where(a => a.Id == filter.UserOrAdminId).Any())
                     expenses = expenses.Where(a => a.Id == filter.UserOrAdminId);
@@ -36,7 +36,7 @@ namespace MoneyManagement
         {
             using (var context = new MoneyManagementDbContext())
             {
-                ExpenseForm expenses = context.Expense.Select(a => new ExpenseForm
+                ExpenseForm expenses = context.Expenses.Select(a => new ExpenseForm
                 {
                     ExpenseSum = a.ExpenseSum,
                     ExpenseTypeName = a.ExpenseType.Name,
@@ -66,14 +66,16 @@ namespace MoneyManagement
 
                 if (expense.Id != Guid.Empty)
                 {
-                    context.Expense.Attach(expense);
+                    context.Expenses.Attach(expense);
                     context.Entry(expense).Property(a => a.Name).IsModified = true;
                     context.Entry(expense).Property(a => a.ExpenseTypeId).IsModified = true;
                     context.Entry(expense).Property(a => a.Month).IsModified = true;
                     context.Entry(expense).Property(a => a.ExpenseSum).IsModified = true;
                 }
                 else
-                    context.Expense.Add(expense);
+                {
+                    context.Expenses.Add(expense);
+                }
                 context.SaveChanges();
                 return true;
             }
@@ -83,7 +85,7 @@ namespace MoneyManagement
         {
             using (var context = new MoneyManagementDbContext())
             {
-                context.Expense.Remove(context.Expense.Where(a => a.Id == id).FirstOrDefault());
+                context.Expenses.Remove(context.Expenses.Where(a => a.Id == id).FirstOrDefault());
                 return true;
             }
         }

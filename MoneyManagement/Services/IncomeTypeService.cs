@@ -13,7 +13,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                List<IncomeTypeListItem> incomeTypeList = context.IncomeType.Where(a => a.UserId == id).Select(a => new IncomeTypeListItem
+                List<IncomeTypeListItem> incomeTypeList = context.IncomeTypes.Where(a => a.UserId == id).Select(a => new IncomeTypeListItem
                 {
                     Id = a.Id,
                     Name = a.Name
@@ -26,7 +26,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                IncomeTypeForm incomeType = context.IncomeType.Where(a => a.Id == id).Select(a => new IncomeTypeForm
+                IncomeTypeForm incomeType = context.IncomeTypes.Where(a => a.Id == id).Select(a => new IncomeTypeForm
                 {
                     Name = a.Name,
                     DateCreated = a.DateCreated
@@ -49,11 +49,11 @@ namespace MoneyManagement.Services
 
                 if (incomeType.Id != Guid.Empty)
                 {
-                    context.IncomeType.Attach(incomeType);
+                    context.IncomeTypes.Attach(incomeType);
                     context.Entry(incomeType).Property(a => a.Name).IsModified = true;
                 }
                 else
-                    context.IncomeType.Add(incomeType);
+                    context.IncomeTypes.Add(incomeType);
                 context.SaveChanges();
                 return true;
             }
@@ -63,7 +63,7 @@ namespace MoneyManagement.Services
         {
             using (var context = new MoneyManagementDbContext())
             {
-                context.IncomeType.Remove(context.IncomeType.Where(a => a.Id == id).FirstOrDefault());
+                context.IncomeTypes.Remove(context.IncomeTypes.Where(a => a.Id == id).FirstOrDefault());
                 context.SaveChanges();
                 return true;
             }

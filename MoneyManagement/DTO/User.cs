@@ -31,4 +31,10 @@ namespace MoneyManagement.DTO
         public double TotalExpenses { get; set; }
         public double TotalIncome { get; set; }
     }
+
+    public class UserBalanceFilter // List all users 
+    {
+        public Guid UserId { get; set; }
+        public DateTime? Month { get; set; }
+    }
 }

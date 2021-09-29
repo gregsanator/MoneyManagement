@@ -64,5 +64,26 @@ namespace MoneyManagement.Services
                 return true;
             }
         }
+
+        // services above are for adminstrators
+
+        public double Balance(UserBalanceFilter filter)
+        {
+            using (var context = new MoneyManagementDbContext())
+            {
+                IQueryable<Expense> expenses = context.Expenses.Where(a => a.UserId == filter.UserId);
+                IQueryable<Income> incomes = context.Incomes.Where(a => a.UserId == filter.UserId);
+
+                if (filter.Month.HasValue)
+                {
+                    expenses = expenses.Where(a => a.Month == filter.Month);
+                    incomes = incomes.Where(a => a.Month == filter.Month);
+                }
+
+                double totalExpenses = expenses.Sum(a => a.ExpenseSum);
+                double totalIncomes = incomes.Sum(a => a.IncomeSum);
+                return totalIncomes - totalExpenses;
+            }
+        }
     }
 }
