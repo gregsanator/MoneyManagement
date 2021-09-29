@@ -9,14 +9,11 @@ namespace MoneyManagement.Services
 {
     public class IncomeService
     {
-        public List<IncomeListItem> List(IncomeMonthFilter filter) // returns a list of IncomeListItems(DTO) which contain the property Id and incomeSum
+        public List<IncomeListItem> List(IncomeMonthFilter filter)
         {
             using (var context = new MoneyManagementDbContext())
             {
                 IQueryable<Income> incomes = context.Incomes;
-
-                if (context.Users.Where(a => a.Id == filter.UserOrAdminId).Any()) // if there is a user with this id
-                    incomes = incomes.Where(a => a.Id == filter.UserOrAdminId); // filter all the incomes with a given id
 
                 if (filter.Month.HasValue) // if we have passed a month value
                     incomes = incomes.Where(a => a.Month == filter.Month); // filter the incomes by month

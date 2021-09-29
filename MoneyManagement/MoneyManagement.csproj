@@ -101,12 +101,14 @@
     <Compile Include="Controllers\IncomeTypeController.cs" />
     <Compile Include="Controllers\ExpenseTypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DTO\Administrator.cs" />
     <Compile Include="DTO\Expense.cs" />
     <Compile Include="DTO\ExpenseType.cs" />
     <Compile Include="DTO\Income.cs" />
     <Compile Include="DTO\IncomeType.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\Permission.cs" />
     <Compile Include="Services\ExpenseService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

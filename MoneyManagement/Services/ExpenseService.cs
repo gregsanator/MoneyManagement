@@ -15,9 +15,6 @@ namespace MoneyManagement
             {
                 IQueryable<Expense> expenses = context.Expenses;
 
-                if (context.Users.Where(a => a.Id == filter.UserOrAdminId).Any())
-                    expenses = expenses.Where(a => a.Id == filter.UserOrAdminId);
-
                 if (filter.Month.HasValue)
                     expenses = expenses.Where(a => a.Month == filter.Month);
 
@@ -28,7 +25,6 @@ namespace MoneyManagement
                 }).ToList();
 
                 return expenseList;
-
             }
         }
 
