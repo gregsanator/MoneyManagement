@@ -78,5 +78,14 @@ namespace MoneyManagement
                 return true;
             }
         }
+
+        public bool Delete(Guid id)
+        {
+            using (var context = new MoneyManagementDbContext())
+            {
+                context.Expense.Remove(context.Expense.Where(a => a.Id == id).FirstOrDefault());
+                return true;
+            }
+        }
     }
 }

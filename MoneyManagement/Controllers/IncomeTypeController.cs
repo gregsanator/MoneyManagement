@@ -11,7 +11,7 @@ namespace MoneyManagement.Controllers
     public class IncomeTypeController : ApiController
     {
         [HttpGet]
-        [Route("api/moneymanagement/incometypes/list/{id}")]
+        [Route("api/moneymanagement/incometype/list/{id}")]
         public IHttpActionResult List(Guid id)
         {
             IncomeTypeService service = new IncomeTypeService();
@@ -20,7 +20,7 @@ namespace MoneyManagement.Controllers
         }
 
         [HttpGet]
-        [Route("api/moneymanagement/incometypes/details/{id}")]
+        [Route("api/moneymanagement/incometype/details/{id}")]
         public IHttpActionResult Details(Guid id)
         {
             IncomeTypeService service = new IncomeTypeService();
@@ -29,7 +29,7 @@ namespace MoneyManagement.Controllers
         }
 
         [HttpPost]
-        [Route("api/moneymanagement/incometypes/save")]
+        [Route("api/moneymanagement/incometype/save")]
         public IHttpActionResult Save(IncomeTypeSave model)
         {
             IncomeTypeService service = new IncomeTypeService();
@@ -38,12 +38,12 @@ namespace MoneyManagement.Controllers
         }
 
         [HttpDelete]
-        [Route("api/moneymanagement/incometypes/delete/{id}")]
-        public IHttpActionResult Delete(IncomeTypeSave model)
+        [Route("api/moneymanagement/incometype/delete/{id}")]
+        public IHttpActionResult Delete(Guid id)
         {
             IncomeTypeService service = new IncomeTypeService();
-            bool save = service.Save(model);
-            return Ok(save);
+            bool delete = service.Delete(id);
+            return Ok(delete);
         }
     }
 }

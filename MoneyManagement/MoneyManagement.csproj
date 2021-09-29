@@ -99,7 +99,7 @@
     <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\IncomeController.cs" />
     <Compile Include="Controllers\IncomeTypeController.cs" />
-    <Compile Include="Controllers\IncomeTypesController.cs" />
+    <Compile Include="Controllers\ExpenseTypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\Expense.cs" />
     <Compile Include="DTO\ExpenseType.cs" />

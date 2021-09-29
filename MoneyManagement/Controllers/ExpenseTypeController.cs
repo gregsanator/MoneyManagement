@@ -39,11 +39,11 @@ namespace MoneyManagement.Controllers
 
         [HttpDelete]
         [Route("api/moneymanagement/expensetypes/delete/{id}")]
-        public IHttpActionResult Delete(ExpenseTypeSave model)
+        public IHttpActionResult Delete(Guid id)
         {
             ExpenseTypeService service = new ExpenseTypeService();
-            bool save = service.Save(model);
-            return Ok(save);
+            bool delete = service.Delete(id);
+            return Ok(delete);
         }
     }
 }

@@ -36,5 +36,14 @@ namespace MoneyManagement.Controllers
             bool success = service.Save(model);
             return Ok(success);
         }
+
+        [HttpDelete]
+        [Route("api/moneymanagement/income/delete/{id}")]
+        public IHttpActionResult Delete(Guid id)
+        {
+            IncomeService service = new IncomeService();
+            bool delete = service.Delete(id);
+            return Ok(delete);
+        }
     }
 }

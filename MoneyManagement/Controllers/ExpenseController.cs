@@ -36,5 +36,14 @@ namespace MoneyManagement.Controllers
             bool success = service.Save(model);
             return Ok(success);
         }
+
+        [HttpDelete]
+        [Route("api/moneymanagement/expense/delete/{id}")]
+        public IHttpActionResult Delete(Guid id)
+        {
+            ExpenseService service = new ExpenseService();
+            bool delete = service.Delete(id);
+            return Ok(delete);
+        }
     }
 }

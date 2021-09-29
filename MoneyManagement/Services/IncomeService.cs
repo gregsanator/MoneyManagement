@@ -78,7 +78,7 @@ namespace MoneyManagement.Services
             }
         }
 
-        public bool Delete(Guid id) // returns a single IncomeForm(DTO) obj for a given Id
+        public bool Delete(Guid id)
         {
             using (var context = new MoneyManagementDbContext())
             {
