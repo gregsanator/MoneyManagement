@@ -9,16 +9,25 @@ namespace MoneyManagement.Services
 {
     public class IncomeService
     {
-        public List<IncomeListItem> List() // returns a list of IncomeListItems(DTO) which contain the property Id and incomeSum
+        public List<IncomeListItem> List(IncomeMonthFilter filter) // returns a list of IncomeListItems(DTO) which contain the property Id and incomeSum
         {
             using (var context = new MoneyManagementDbContext())
             {
-                List<IncomeListItem> incomes = context.Income.Select(a => new IncomeListItem
+                IQueryable<Income> incomes = context.Income;
+
+                if (context.Users.Where(a => a.Id == filter.UserOrAdminId).Any()) // if there is a user with this id
+                    incomes = incomes.Where(a => a.Id == filter.UserOrAdminId); // filter all the incomes with a given id
+
+                if (filter.Month.HasValue) // if we have passed a month value
+                    incomes = incomes.Where(a => a.Month == filter.Month); // filter the incomes by month
+
+                List<IncomeListItem> incomeList = incomes.Select(a => new IncomeListItem
                 {
                     Id = a.Id,
                     IncomeSum = a.IncomeSum
                 }).ToList();
-                return incomes;
+
+                return incomeList;
             }
         }
 
@@ -65,6 +74,15 @@ namespace MoneyManagement.Services
                 else
                     context.Income.Add(income);
                 context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool Delete(Guid id) // returns a single IncomeForm(DTO) obj for a given Id
+        {
+            using (var context = new MoneyManagementDbContext())
+            {
+                context.Income.Remove(context.Income.Where(a => a.Id == id).FirstOrDefault());
                 return true;
             }
         }

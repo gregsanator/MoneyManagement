@@ -9,16 +9,26 @@ namespace MoneyManagement
 {
     public class ExpenseService
     {
-        public List<ExpenseListItem> List() // returns a list of ExpenseListItems(DTO) which contain the property Id and ExpenseSum
+        public List<ExpenseListItem> List(ExpenseMonthFilter filter) //Returns all expenses recorded if admin else returns only user's expenses if user
         {
             using(var context = new MoneyManagementDbContext())
             {
-                List<ExpenseListItem> expenses = context.Expense.Select(a => new ExpenseListItem
+                IQueryable<Expense> expenses = context.Expense;
+
+                if (context.Users.Where(a => a.Id == filter.UserOrAdminId).Any())
+                    expenses = expenses.Where(a => a.Id == filter.UserOrAdminId);
+
+                if (filter.Month.HasValue)
+                    expenses = expenses.Where(a => a.Month == filter.Month);
+
+                List <ExpenseListItem> expenseList = expenses.Select(a => new ExpenseListItem
                 {
                     Id = a.Id,
                     ExpenseSum = a.ExpenseSum
                 }).ToList();
-                return expenses;
+
+                return expenseList;
+
             }
         }
 

@@ -20,5 +20,6 @@ namespace MoneyManagement.Models
         [ForeignKey("Account")]
         public Guid AccountId { get; set; }
         public Account Account { get; set; }
+
     }
 }

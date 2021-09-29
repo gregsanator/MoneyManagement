@@ -10,6 +10,13 @@ namespace MoneyManagement.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // PK
         public Guid Id { get; set; }
+
+        [ForeignKey("User")]
+        public Guid UserId { get; set; }
+        public User User { get; set; }
+
+
         public string Name { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

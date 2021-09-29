@@ -29,4 +29,10 @@ namespace MoneyManagement.DTO
         public double ExpenseSum { get; set; }
         public DateTime Month { get; set; }
     }
+
+    public class ExpenseMonthFilter // both are nullable because admin can view all incomes 
+    {
+        public Guid UserOrAdminId { get; set; }
+        public DateTime? Month { get; set; }
+    }
 }
