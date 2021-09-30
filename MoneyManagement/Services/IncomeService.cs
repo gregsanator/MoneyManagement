@@ -18,7 +18,7 @@ namespace MoneyManagement.Services
                 if (filter.Month.HasValue) // if we have passed a month value
                     incomes = incomes.Where(a => a.Month == filter.Month); // filter the incomes by month
 
-                List<IncomeListItem> incomeList = incomes.Select(a => new IncomeListItem
+                List<IncomeListItem> incomeList = incomes.Where(a => a.UserId == filter.UserId).Select(a => new IncomeListItem
                 {
                     Id = a.Id,
                     IncomeSum = a.IncomeSum

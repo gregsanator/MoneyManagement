@@ -31,7 +31,7 @@ namespace MoneyManagement.DTO
 
     public class IncomeMonthFilter // both are nullable because admin can view all incomes 
     {
-        public Guid UserOrAdminId { get; set; }
+        public Guid UserId { get; set; }
         public DateTime? Month { get; set; }
     }
 }

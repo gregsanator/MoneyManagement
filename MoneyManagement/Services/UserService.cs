@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Administrator = MoneyManagement.Models.Administrator;
 
 namespace MoneyManagement.Services
 {
@@ -83,6 +84,43 @@ namespace MoneyManagement.Services
                 double totalExpenses = expenses.Sum(a => a.ExpenseSum);
                 double totalIncomes = incomes.Sum(a => a.IncomeSum);
                 return totalIncomes - totalExpenses;
+            }
+        }
+
+        public bool Enable(Guid id)
+        {
+            using(var context = new MoneyManagementDbContext())
+            {
+                User user = context.Users.Where(a => a.Id == id).FirstOrDefault();
+                if (user == null)
+                    return false;
+
+                else
+                    user.Enabled = !user.Enabled;
+
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool UserToAdmin(Guid id)
+        {
+            using(var context = new MoneyManagementDbContext())
+            {
+                User user = context.Users.Where(a => a.Id == id).FirstOrDefault();
+
+                Administrator admin = new Administrator
+                {
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    Username = user.UserName,
+                    Password = user.Password,
+                    Enabled = true
+                };
+
+                context.Administrators.Add(admin);
+                context.Users.Remove(user);
+                return true;
             }
         }
     }

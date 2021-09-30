@@ -5,20 +5,20 @@ using System.Web;
 
 namespace MoneyManagement.DTO
 {
-    public class UserListItem // List all users 
+    public class UserListItem 
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }
     }
 
-    public class UserForm // List all users 
+    public class UserForm 
     {
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
     }
 
-    public class UserSave // List all users 
+    public class UserSave 
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -26,15 +26,21 @@ namespace MoneyManagement.DTO
         public int Age { get; set; }
     }
 
-    public class UserReport // List all users 
+    public class UserReport
     {
         public double TotalExpenses { get; set; }
         public double TotalIncome { get; set; }
     }
 
-    public class UserBalanceFilter // List all users 
+    public class UserBalanceFilter 
     {
         public Guid UserId { get; set; }
         public DateTime? Month { get; set; }
+    }
+
+    public class UserEnable
+    {
+        public Guid Id { get; set; }
+        public bool Enabled { get; set; }
     }
 }

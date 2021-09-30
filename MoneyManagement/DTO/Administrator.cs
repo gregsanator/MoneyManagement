@@ -10,16 +10,15 @@ namespace MoneyManagement.DTO
         public class AdministratorListItem
         {
             public Guid Id { get; set; }
-            public string Name { get; set; }
-            public string Surname { get; set; }
             public string Username { get; set; }
-            public bool Disabled { get; set; }
+            public bool Enabled { get; set; }
         }
 
         public class AdministratorForm
         {
             public string Name { get; set; }
             public string Surname { get; set; }
+            public bool Enabled { get; set; }
             public string Username { get; set; }
         }
 
@@ -39,10 +38,11 @@ namespace MoneyManagement.DTO
             public bool Enabled { get; set; }
         }
 
-        public class AdministratorPermissionEnabled
+        public class AdministratorPermissionEnable
         {
             public Guid AdministratorId { get; set; }
             public Guid PermissionId { get; set; }
         }
+
     }
 }

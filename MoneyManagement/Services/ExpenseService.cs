@@ -9,7 +9,7 @@ namespace MoneyManagement
 {
     public class ExpenseService
     {
-        public List<ExpenseListItem> List(ExpenseMonthFilter filter) //Returns all expenses recorded if admin else returns only user's expenses if user
+        public List<ExpenseListItem> List(ExpenseMonthFilter filter) 
         {
             using(var context = new MoneyManagementDbContext())
             {
@@ -18,7 +18,7 @@ namespace MoneyManagement
                 if (filter.Month.HasValue)
                     expenses = expenses.Where(a => a.Month == filter.Month);
 
-                List <ExpenseListItem> expenseList = expenses.Select(a => new ExpenseListItem
+                List <ExpenseListItem> expenseList = expenses.Where(a => a.UserId == filter.UserId).Select(a => new ExpenseListItem
                 {
                     Id = a.Id,
                     ExpenseSum = a.ExpenseSum

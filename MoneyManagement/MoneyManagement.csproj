@@ -96,6 +96,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
     <Compile Include="Controllers\IncomeController.cs" />
     <Compile Include="Controllers\IncomeTypeController.cs" />
@@ -108,7 +109,9 @@
     <Compile Include="DTO\IncomeType.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\AdministratorPermission.cs" />
     <Compile Include="Models\Permission.cs" />
+    <Compile Include="Services\AdministratorService.cs" />
     <Compile Include="Services\ExpenseService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -148,6 +151,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Administrator\" />
     <Folder Include="Views\Expense\" />
     <Folder Include="Views\IncomeTypes\" />
     <Folder Include="Views\IncomeType\" />

@@ -19,5 +19,8 @@ namespace MoneyManagement.Models
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<ExpenseType> ExpenseTypes { get; set; }
         public DbSet<UserAccount> UserAccount { get; set; }
+        public DbSet<Administrator> Administrators { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<AdministratorPermission> AdministratorPermissions { get; set; }
     }
 }
